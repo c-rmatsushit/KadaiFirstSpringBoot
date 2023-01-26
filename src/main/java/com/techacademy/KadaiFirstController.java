@@ -15,21 +15,21 @@ public class KadaiFirstController {
 		return "Hello SpringBoot!";
 	}
 
-	@GetMapping("dayofweek/{dispDayOfWeek}")
-	public static String dispDayOfWeek(String ymd) {
+	@GetMapping("dayofweek/{yyyymmdd}")
+	public String dispDayOfWeek(@PathVariable String yyyymmdd) {
 		try {
 			// 曜日
 			String yobi[] = { "日曜", "月曜", "火曜", "水曜", "木曜", "金曜", "土曜" };
 
 			// 日付チェック
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyymmdd");
 			sdf.setLenient(false);
-			sdf.parse(ymd);
+			sdf.parse(yyyymmdd);
 
 			// 年・月を取得する
-			int y = Integer.parseInt(ymd.substring(0, 4));
-			int m = Integer.parseInt(ymd.substring(4, 6)) - 1;
-			int d = Integer.parseInt(ymd.substring(6, 8));
+			int y = Integer.parseInt(yyyymmdd.substring(0, 4));
+			int m = Integer.parseInt(yyyymmdd.substring(4, 6)) - 1;
+			int d = Integer.parseInt(yyyymmdd.substring(6, 8));
 
 			// 取得した年月の最終年月日を取得する
 			Calendar cal = Calendar.getInstance();
